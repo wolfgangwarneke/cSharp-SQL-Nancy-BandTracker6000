@@ -34,6 +34,14 @@ namespace BandTracker
       Assert.Equal(saveThisBand.GetName(), retrievedBand.GetName());
     }
     [Fact]
+    public void Test_DeleteAll_DeletesAllBandsInDatabase()
+    {
+      Band saveThisBand = new Band("Cat Sabbath");
+      saveThisBand.Save();
+      Band.DeleteAll();
+      Assert.Equal(0, Band.GetAll().Count);
+    }
+    [Fact]
     public void Test_Find_FindBandByDataBaseId()
     {
       Band saveThisBand = new Band("Catnip Stevens");
