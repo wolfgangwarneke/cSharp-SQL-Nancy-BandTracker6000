@@ -1,4 +1,4 @@
-# Band Tracker
+# Band Tracker 6000
 
 #### Keep track of venues the bands that play them, July 22nd, 2016_
 

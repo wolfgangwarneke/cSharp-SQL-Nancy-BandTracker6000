@@ -64,6 +64,16 @@ namespace BandTracker
       Assert.Equal(expectedVenueToFind, foundVenue);
     }
     [Fact]
+    public void Test_Find_FindVenueByName()
+    {
+      Venue saveThisVenue = new Venue("The Meow");
+      saveThisVenue.Save();
+      Venue expectedVenueToFind = Venue.GetAll()[0];
+      string nameToFindBy = expectedVenueToFind.GetName();
+      Venue foundVenue = Venue.FindByName(nameToFindBy);
+      Assert.Equal(expectedVenueToFind, foundVenue);
+    }
+    [Fact]
     public void Test_UpdateVenueName_ChangeNameFrom()
     {
       Venue firstVenue = new Venue("The Meow Hall");
