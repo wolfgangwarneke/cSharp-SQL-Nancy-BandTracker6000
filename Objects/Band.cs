@@ -60,6 +60,30 @@ namespace BandTracker
       }
       return everyBand;
     }
+    public void Save()
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+      SqlDataReader rdr = null;
+      SqlCommand cmd = new SqlCommand ("INSERT INTO bands (name) OUTPUT INSERTED.id VALUES (@BandName);", conn);
+      SqlParameter nameParameter = new SqlParameter();
+      nameParameter.ParameterName = "@BandName";
+      nameParameter.Value = this.GetName();
+      cmd.Parameters.Add(nameParameter);
+      rdr = cmd.ExecuteReader();
+      while (rdr.Read())
+      {
+       this._id = rdr.GetInt32(0);
+      }
+      if (rdr != null)
+      {
+       rdr.Close();
+      }
+      if (conn != null)
+      {
+       conn.Close();
+      }
+    }
     public override bool Equals(System.Object otherBand)
     {
       if (otherBand is Band)
@@ -73,6 +97,36 @@ namespace BandTracker
       {
        return false;
       }
+    }
+
+    public static Band Find (int bandId)
+    {
+      List<Band> matchingBands = new List<Band> {};
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+      SqlDataReader rdr = null;
+      SqlCommand cmd = new SqlCommand ("SELECT * FROM bands WHERE id = @BandId;", conn);
+      SqlParameter nameParameter = new SqlParameter ();
+      nameParameter.ParameterName = "@BandId";
+      nameParameter.Value = bandId;
+      cmd.Parameters.Add(nameParameter);
+      rdr = cmd.ExecuteReader();
+      while (rdr.Read())
+      {
+        int id = rdr.GetInt32(0);
+        string name = rdr.GetString(1);
+        Band newBand = new Band (name, id);
+        matchingBands.Add(newBand);
+      }
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+      if (conn != null)
+      {
+        conn.Close();
+      }
+      return matchingBands[0];
     }
   }
 }
