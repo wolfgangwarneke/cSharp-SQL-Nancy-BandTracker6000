@@ -18,11 +18,73 @@ This is a project for my C# class at Epicodus. Remember than one show? Me either
 | Adds venue to database | "The Cat's Cradle" | "The Cat's Cradle" is displayed in all venues list |
 | Adds signature genre parameter for venues | name: "The Cat's Cradle"; main genre: "folk" | "The Cat's Cradle" is suggested as a venue when viewing all punk bands" |
 | Adds capacity parameter for venues | name: "The Yarn Ballroom", capacity: 500; name: "The Cat's Cradle", capacity: 120 | "The Yarn Ballroom" is displayed before "The Cat's Cradle" when viewing venues by size |
-| Adds show to database | Date: 7.18.2016, Band: "Eat Your Young" (obviously a 'grindcore' band), Venue: "The Mischievous Kitten" | Show is added to database. Show is displayed when viewing details for either "Eat Your Young" or "The Mischievous Kitten" |
+| Adds show to database | Date: 7.18.2016, Band: "Eat Your Young" (obviously a 'grindcore' band), Venue: "The Mischievous Kitten" | Show is added to database. |
+| Shows band details (name, genre, likes, and shows played) when band name is clicked | Select "" | Name: ""; Genre: ""; FB likes: 128; shows: "March 4th, 2013 at The Scratching Post", "Jan 2nd, 2013 at The Scratching Post" |
 ### Test Specifications
-| Behavior        | Input           | Outcome  |
-| ------------- |:-------------:| -----:|
-|  |  |  |
+#### Band Tests
+| Test        | Method | Input           | Output (or outcome)  |
+| ------------- |:----:|:-------------:| -----:|
+| Database is initially empty | GetAll() | n/a | Count of entries is 0. |
+| Two identical entries are treated as one entry. | Equals() | First band: "The Paw-lice", second band: "The Paw-lice" | First band is same as second band. |
+| Saves new band to database | Save() |  |  |
+| Clears all bands from database | DeleteAll() |  |  |
+| Removes one band from database | DeleteThis() |  |  |
+| Returns band by band name | Find() | (database of bands contains: "The Paw-Lice" and "Here Kitty Kitty") Band.Find("Here Kitty Kitty") | Band object for "Here Kitty Kitty" |
+| Changes band name to a new input name | UpdateName() | (band is called "Siamese Dream", gets sued by Billy Corgan from the Smashing Pumpkins for copyright infringement) this.UpdateName("The Bengals") | Band name is changed to The Bengals |
+|  |  |  |  |
+|  |  |  |  |
+|  |  |  |  |
+|  |  |  |  |
+|  |  |  |  |
+|  |  |  |  |
+|  |  |  |  |
+|  |  |  |  |
+|  |  |  |  |
+|  |  |  |  |
+|  |  |  |  |
+|  |  |  |  |
+|  |  |  |  |
+
+#### Venue Tests
+| Test        | Method | Input           | Output  |
+| ------------- |:----:|:-------------:| -----:|
+| Database is initially empty | GetAll() | n/a | Count of entries is 0. |
+|  |  |  |  |
+|  |  |  |  |
+|  |  |  |  |
+|  |  |  |  |
+|  |  |  |  |
+|  |  |  |  |
+|  |  |  |  |
+|  |  |  |  |
+|  |  |  |  |
+|  |  |  |  |
+|  |  |  |  |
+|  |  |  |  |
+|  |  |  |  |
+|  |  |  |  |
+|  |  |  |  |
+|  |  |  |  |
+#### Show Tests
+| Test        | Method | Input           | Output  |
+| ------------- |:----:|:-------------:| -----:|
+| Database is initially empty | GetAll() | n/a | Count of entries is 0. |
+|  |  |  |  |
+|  |  |  |  |
+|  |  |  |  |
+|  |  |  |  |
+|  |  |  |  |
+|  |  |  |  |
+|  |  |  |  |
+|  |  |  |  |
+|  |  |  |  |
+|  |  |  |  |
+|  |  |  |  |
+|  |  |  |  |
+|  |  |  |  |
+|  |  |  |  |
+|  |  |  |  |
+|  |  |  |  |
 
 ## Setup/Installation Requirements
 
