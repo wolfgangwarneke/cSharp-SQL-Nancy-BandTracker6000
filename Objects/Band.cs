@@ -84,21 +84,6 @@ namespace BandTracker
        conn.Close();
       }
     }
-    public override bool Equals(System.Object otherBand)
-    {
-      if (otherBand is Band)
-      {
-       Band newBand = (Band) otherBand;
-       bool idEquality = (this.GetId() == newBand.GetId());
-       bool nameEquality = (this.GetName() == newBand.GetName());
-       return (idEquality && nameEquality);
-      }
-      else
-      {
-       return false;
-      }
-    }
-
     public static Band Find (int bandId)
     {
       List<Band> matchingBands = new List<Band> {};
@@ -127,6 +112,27 @@ namespace BandTracker
         conn.Close();
       }
       return matchingBands[0];
+    }
+    public override bool Equals(System.Object otherBand)
+    {
+      if (otherBand is Band)
+      {
+       Band newBand = (Band) otherBand;
+       bool idEquality = (this.GetId() == newBand.GetId());
+       bool nameEquality = (this.GetName() == newBand.GetName());
+       return (idEquality && nameEquality);
+      }
+      else
+      {
+       return false;
+      }
+    }
+    public static void DeleteAll()
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+      SqlCommand cmd = new SqlCommand ("DELETE FROM bands;", conn);
+      cmd.ExecuteNonQuery();
     }
   }
 }
