@@ -64,6 +64,16 @@ namespace BandTracker
       Assert.Equal(expectedBandToFind, foundBand);
     }
     [Fact]
+    public void Test_Find_FindBandByName()
+    {
+      Band saveThisBand = new Band("Catnip Stevens");
+      saveThisBand.Save();
+      Band expectedBandToFind = Band.GetAll()[0];
+      string nameToFindBy = expectedBandToFind.GetName();
+      Band foundBand = Band.FindByName(nameToFindBy);
+      Assert.Equal(expectedBandToFind, foundBand);
+    }
+    [Fact]
     public void Test_UpdateBandName_ChangeNameFrom()
     {
       Band firstBand = new Band("DeadEgyptianMau5");
