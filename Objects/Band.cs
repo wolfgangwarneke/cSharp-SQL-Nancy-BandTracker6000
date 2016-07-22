@@ -113,6 +113,25 @@ namespace BandTracker
       }
       return matchingBands[0];
     }
+    public static void DeleteAll()
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+      SqlCommand cmd = new SqlCommand ("DELETE FROM bands;", conn);
+      cmd.ExecuteNonQuery();
+    }
+    public void DeleteThis()
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+      SqlCommand cmd = new SqlCommand ("DELETE FROM bands WHERE id = @BandId;", conn);
+      SqlParameter idParameter = new SqlParameter ();
+      idParameter.ParameterName = "@BandId";
+      idParameter.Value = this.GetId();
+      cmd.Parameters.Add(idParameter);
+      cmd.ExecuteNonQuery();
+    }
+
     public override bool Equals(System.Object otherBand)
     {
       if (otherBand is Band)
@@ -126,13 +145,6 @@ namespace BandTracker
       {
        return false;
       }
-    }
-    public static void DeleteAll()
-    {
-      SqlConnection conn = DB.Connection();
-      conn.Open();
-      SqlCommand cmd = new SqlCommand ("DELETE FROM bands;", conn);
-      cmd.ExecuteNonQuery();
     }
   }
 }

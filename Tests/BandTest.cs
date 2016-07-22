@@ -38,8 +38,20 @@ namespace BandTracker
     {
       Band saveThisBand = new Band("Cat Sabbath");
       saveThisBand.Save();
+      Band saveThisBandToo = new Band("Meow Meow Meows");
+      saveThisBandToo.Save();
       Band.DeleteAll();
       Assert.Equal(0, Band.GetAll().Count);
+    }
+    [Fact]
+    public void Test_DeleteThis_DeletesBandWhichCallsDeleteThis()
+    {
+      Band saveThisBand = new Band("DJ Meow Mix");
+      saveThisBand.Save();
+      Band saveThisBandToo = new Band("");
+      saveThisBandToo.Save();
+      saveThisBandToo.DeleteThis();
+      Assert.Equal(1, Band.GetAll().Count);
     }
     [Fact]
     public void Test_Find_FindBandByDataBaseId()
