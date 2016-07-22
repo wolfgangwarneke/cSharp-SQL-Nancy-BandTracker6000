@@ -26,9 +26,9 @@ This is a project for my C# class at Epicodus. Remember than one show? Me either
 | ------------- |:----:|:-------------:| -----:|
 | Database is initially empty | GetAll() | n/a | Count of entries is 0. |
 | Two identical entries are treated as one entry. | Equals() | First band: "The Paw-lice", second band: "The Paw-lice" | First band is same as second band. |
-| Saves new band to database | Save() |  |  |
-| Clears all bands from database | DeleteAll() |  |  |
-| Removes one band from database | DeleteThis() |  |  |
+| Saves new band to database | Save() | New band object | Band is written as new row entry in database |
+| Clears all bands from database | DeleteAll() | n/a | all entries for 'bands' database table are removed |
+| Removes one band from database | DeleteThis() | any band object | row containing this bands' information is removed from database |
 | Returns band by band name | Find() | (database of bands contains: "The Paw-Lice" and "Here Kitty Kitty") Band.Find("Here Kitty Kitty") | Band object for "Here Kitty Kitty" |
 | Changes band name to a new input name | UpdateName() | (band is called "Siamese Dream", gets sued by Billy Corgan from the Smashing Pumpkins for copyright infringement) this.UpdateName("The Bengals") | Band name is changed to The Bengals |
 |  |  |  |  |

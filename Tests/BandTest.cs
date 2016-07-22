@@ -48,7 +48,7 @@ namespace BandTracker
     {
       Band saveThisBand = new Band("DJ Meow Mix");
       saveThisBand.Save();
-      Band saveThisBandToo = new Band("");
+      Band saveThisBandToo = new Band("Chausie and the Banshees");
       saveThisBandToo.Save();
       saveThisBandToo.DeleteThis();
       Assert.Equal(1, Band.GetAll().Count);
@@ -63,7 +63,17 @@ namespace BandTracker
       Band foundBand = Band.Find(idToFindBy);
       Assert.Equal(expectedBandToFind, foundBand);
     }
-
+    [Fact]
+    public void Test_UpdateBandName_ChangeNameFrom()
+    {
+      Band firstBand = new Band("DeadEgyptianMau5");
+      firstBand.Save();
+      Band secondBand = new Band("Purrs for Furs");
+      secondBand.Save();
+      firstBand.UpdateBandName("Abyssinian");
+      Band firstBandFromDatabase = Band.Find(firstBand.GetId());
+      Assert.Equal("Abyssinian", firstBandFromDatabase.GetName());
+    }
     public void Dispose()
     {
       Band.DeleteAll();
