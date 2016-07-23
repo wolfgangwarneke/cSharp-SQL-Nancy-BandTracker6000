@@ -209,6 +209,38 @@ namespace BandTracker
       }
     }
 
+    public List<Band> GetHeadlinersHistory()
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("SELECT bands.* FROM bands JOIN shows ON (bands.id shows.headliner_band_id) JOIN bands ON (shows.venue_id = venue.id) WHERE venues.id = @VenueId");
+      SqlParameter venueId = new SqlParameter();
+      venueId.ParameterName = "@VenueId";
+      venueId.Value = this.GetId().ToString();
+      cmd.Parameters.Add(venueId);
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      List<Band> headliningBands = new List<Band>{};
+
+      while(rdr.Read())
+      {
+        int bandId = rdr.GetInt32(0);
+        string bandName = rdr.GetString(1);
+        Band newBand = new Band(bandName, bandId);
+        headliningBands.Add(newBand);
+      }
+
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+      if (conn != null)
+      {
+        conn.Close();
+      }
+      return headliningBands;
+    }
 
   }
 }
